@@ -1,0 +1,9 @@
+#! /usr/bin/perl
+
+for $arg (@ARGV) { 
+  if  (! -e $arg ) {
+    system "touch $arg"; 
+  } 
+}
+    $argomenti = join(" ", @ARGV);
+    system "open -a /Applications/Aquamacs.app $argomenti"; 

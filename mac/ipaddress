@@ -1,0 +1,24 @@
+#! /bin/bash
+txtund=$(tput sgr 0 1)          # Underline
+txtbld=$(tput bold)             # Bold
+bldred=${txtbld}$(tput setaf 1) #  red
+bldblu=${txtbld}$(tput setaf 4) #  blue
+bldwht=${txtbld}$(tput setaf 7) #  white
+bldgrn=${txtbld}$(tput setaf 2) #  green
+txtrst=$(tput sgr0)             # Reset
+info=${bldwht}*${txtrst}        # Feedback
+pass=${bldblu}*${txtrst}
+warn=${bldred}*${txtrst}
+ques=${bldblu}?${txtrst}
+
+echo "  "
+echo "$bldblu _____________________________ $txtrst"
+echo "$bldgrn  Ethernet $txtrst"
+ifconfig en0 | grep "ether " | awk {'print "   MAC: " $2'}
+ifconfig en0 | grep "inet " | awk {'print "   IP: " $2'}
+echo "  "
+echo "$bldgrn  Wireless $txtrst"
+ifconfig en1 | grep "ether " | awk {'print "   MAC: " $2'}
+ifconfig en1 | grep "inet " | awk {'print "    IP: " $2'}
+echo "$bldblu _____________________________ $txtrst"
+echo " "
