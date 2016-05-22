@@ -6,7 +6,7 @@ use File::Copy;
 open CONF, "/etc/organise.conf";
 @lines = <CONF>;
 close CONF;
-$series_path = "/home/ubuntu/Public/Series";
+$series_path = "/home/udooer/Public/Series";
 
 $i=0;
 for $line (@lines) {
@@ -22,10 +22,6 @@ for $line (@lines) {
     }  
 }
 
-
-
-
-
 if ($#ARGV > -1) { 
     if (-e  $ARGV[0]) {
 	$dir = $ARGV[0];
@@ -35,7 +31,6 @@ if ($#ARGV > -1) {
 } else {
     $dir = ".";
 }
-
 
 opendir DIR, $dir;
 @filez = readdir DIR;
@@ -81,7 +76,7 @@ sub organize {
 		    for my $str(@Show) {
 			$str = "\u$str";
 		    }
-		    $show = join("_", @Show);
+		    $show = join(".", @Show);
 		    print "\n";
 		    @Title = split(/\W+/, $title);
 		    for my $str(@Title) {
