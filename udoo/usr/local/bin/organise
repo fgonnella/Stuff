@@ -82,7 +82,7 @@ sub organize {
 		    for my $str(@Title) {
 			$str = "\u$str";
 		    }
-		    $title =  join("_", @Title);
+		    $title =  join(".", @Title);
 		    $season = sprintf("%02d",$season);
 		    $episode = sprintf("%02d",$episode);
 		    if (not -e "$series_path/$show/") {
