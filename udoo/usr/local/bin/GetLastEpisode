@@ -3,6 +3,11 @@ $verbose = 0;
 $config_file = "/etc/GetLastEpisode.txt";
 $done_file   = "/home/udooer/Public/torrents/done.txt";
 $torrent_path = "/home/udooer/Public/torrents";
+$SendMail = 1;
+$MailAddress = 'francesco.gonnella@gmail.com';
+$MailSubject = 'UDOO is downloading torrent';
+$MailText = 'Torrent file:';
+
 
 die "The script needs curl executable to be in /usr/bin, please install it\n" unless (-e "/usr/bin/curl");
 
@@ -52,6 +57,9 @@ for (@items) {
 		    print DONE "$file\n";
 		    close DONE;
 		    $torrent =  `/usr/bin/curl --globoff -k $url -o $torrent_path/$file.torrent`;
+		    $command = "echo '$MailText $file'  | mail -s '$MailSubject' $MailAddress";
+		    print "[debug] Executing : $command ...\n" if $verbose ;
+		    system($command) if ($SendMail == 1) ;
 		    last;
 		}
 	    }
