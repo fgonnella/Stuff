@@ -101,6 +101,10 @@ sub organize {
 		    mkdir $newpath;
 		    print BOLD "Moving: $folder/$file", " -> ", $newfile, "\n";
 		    move( "$folder/$file",$newfile) or die "Move failed: $!";
+
+		    if (($ext ne "srt") &&  (-e "/usr/local/bin/addic7ed")) {
+			system("cd $newpath; /usr/local/bin/addic7ed -bb -l english $show-S${season}E$episode$title.$ext");
+		    }
 		    $series = 1;
 		} 
 	    } 
