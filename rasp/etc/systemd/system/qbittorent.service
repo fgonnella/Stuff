@@ -1,0 +1,10 @@
+[Unit]
+Description=qbittorrent torrent server
+
+[Service]
+User=pi
+ExecStart=/usr/bin/qbittorrent-nox
+Restart=on-abort
+
+[Install]
+WantedBy=multi-user.target
