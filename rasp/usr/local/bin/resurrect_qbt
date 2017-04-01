@@ -1,0 +1,8 @@
+#!/bin/bash
+
+a=`/usr/bin/pgrep qbittorrent`
+
+if [ -z "$a" ]; then
+ echo starting torrent...
+ /usr/bin/service qbittorrent-nox-daemon start
+fi
